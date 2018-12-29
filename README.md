@@ -17,7 +17,7 @@ Visual Studio 2015 Community Edition でコンパイル確認済み
     - ping-test.exe: ipv4ライブラリのテスト用プログラム
 
 ## 使用方法
-`Usage: win-ping.exe [--help] [--version] [--update] [--yes] [--start=N] [--end=N] [--timeout=N] [-hvuyset]`
+`Usage: win-ping.exe [--help] [--version] [--update] [--yes] [--ip1=N] [--ip2=N] [--ip3=N] [--start=N] [--end=N] [--timeout=N] [-hvuy123set]`
 
 win-pingを実行すると、まず同一フォルダ内にある`oui.txt`を読み込んで、macアドレスとベンダー名の対応表を作成する
 
@@ -30,8 +30,11 @@ win-pingを実行すると、まず同一フォルダ内にある`oui.txt`を読
 - -v --version: バージョン情報を表示する
 - -u --update: oui.txt（macアドレスとベンダー名の対応表）を最新のものに更新する
 - -y --yes: oui.txtをダウンロードする時、確認をスキップする
-- -sN --start=N: Ping送信テストする時のIPアドレスの開始アドレスを `192.168.0.N` にする (default=0)
-- -eN --end=N: Ping送信テストする時のIPアドレスの終了アドレスを `192.168.0.N` にする (default=244)
+- -1N --ip1=N: Ping送信テストする時のIPアドレスを `N.ip2.ip3.start` ～ `N.ip2.ip3.end` にする (default=192)
+- -2N --ip2=N: Ping送信テストする時のIPアドレスを `ip1.N.ip3.start` ～ `ip1.N.ip3.end` にする (default=192)
+- -3N --ip3=N: Ping送信テストする時のIPアドレスを `ip1.ip2.N.start` ～ `ip1.ip2.N.end` にする (default=192)
+- -sN --start=N: Ping送信テストする時のIPアドレスの開始アドレスを `ip1.ip2.ip3.N` にする (default=0)
+- -eN --end=N: Ping送信テストする時のIPアドレスの終了アドレスを `ip1.ip2.ip3.N` にする (default=244)
 - -tN --timeout=N: Ping送信テストする時のタイムアウト時間(ミリ秒)を設定 (default=500)
 
 ### 使用例
