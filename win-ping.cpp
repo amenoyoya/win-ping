@@ -147,7 +147,12 @@ bool analyze_opt(int argc, char *argv[], flag_t *flag){
 int main(int argc, char *argv[]){
   flag_t flag = {false, false, false, false, 192, 168, 0, 0, 244, 500};
   
-  if(argc < 2 || !analyze_opt(argc - 1, &argv[1], &flag)){
+  if(argc < 2){ // オプションがないなら、デフォルトのままping送信テスト実行
+    if(!ping(!flag.yes, flag.ip1, flag.ip2, flag.ip3, flag.start, flag.end, flag.timeout)) return 1;
+    return 0;
+  }
+  
+  if(!analyze_opt(argc - 1, &argv[1], &flag)){
     show_usage();
     return 1;
   }
@@ -155,7 +160,7 @@ int main(int argc, char *argv[]){
   if(flag.help){ // Usage表示
     show_usage();
   }else{ // Usageを表示しない場合、メイン処理を行う
-    if(flag.version) puts("win-ping ver.1.1.0 / Copyright (C) yoya(@amenoyoya) 2018"); // バージョン表示
+    if(flag.version) puts("win-ping ver.1.1.1 / Copyright (C) yoya(@amenoyoya) 2018"); // バージョン表示
     if(flag.update){ // oui.txtのダウンロードを行う
       if(!download_oui(!flag.yes)) return 1;
     }else{ // ping送信テスト実行
